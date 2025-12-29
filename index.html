@@ -126,13 +126,16 @@ zones.forEach((zone, i) => {
       }
     });
 
+    // Nachricht unter dem Chart anzeigen
+    const resultDiv = document.getElementById('result');
     if(allCorrect){
-      setTimeout(() => {
-        alert("Well done!✅");
-      }, 100); // kleiner Timeout, damit das Drop-Ereignis zuerst abgeschlossen ist
+      resultDiv.textContent = "Well done!✅";
+    } else {
+      resultDiv.textContent = ""; // leer lassen, wenn noch nicht alle korrekt
     }
   });
 });
+
 });
 </script>
 
