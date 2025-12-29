@@ -104,9 +104,38 @@ zones.forEach((zone, i) => {
     } else {
       zone.style.border = '2px solid red';
     }
+  }); 
+  zones.forEach((zone, i) => {
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    const dropped = e.dataTransfer.getData('text');
+    zone.innerHTML = dropped;
+
+    // Feedback für diese Zone
+    if(dropped === correct[i]){
+      zone.style.border = '2px solid green';
+    } else {
+      zone.style.border = '2px solid red';
+    }
+
+    // Prüfen, ob alle korrekt sind
+    let allCorrect = true;
+    zones.forEach((z, idx) => {
+      if(z.innerHTML !== correct[idx]){
+        allCorrect = false;
+      }
+    });
+
+    if(allCorrect){
+      setTimeout(() => {
+        alert("Well done!✅");
+      }, 100); // kleiner Timeout, damit das Drop-Ereignis zuerst abgeschlossen ist
+    }
   });
+});
 });
 </script>
 
 </body>
 </html>
+
